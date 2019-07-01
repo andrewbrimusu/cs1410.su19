@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - ScrollBarDemo.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.awt.*;
+<span class = "keyword">import</span> java.awt.event.*;
+<span class = "keyword">import</span> javax.swing.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> ScrollBarDemo <span class = "keyword">extends</span> JFrame {
+  <span class = "comment">// Create horizontal and vertical scroll bars</span>
+  <span class = "keyword">private</span> JScrollBar jscbHort =
+    <span class = "keyword">new</span> JScrollBar(JScrollBar.HORIZONTAL);
+  <span class = "keyword">private</span> JScrollBar jscbVert =
+    <span class = "keyword">new</span> JScrollBar(JScrollBar.VERTICAL);
+
+  <span class = "comment">// Create a MessagePanel</span>
+  <span class = "keyword">private</span> MessagePanel messagePanel =
+    <span class = "keyword">new</span> MessagePanel(<span class = "literal">"Welcome to Java"</span>);
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    ScrollBarDemo frame = <span class = "keyword">new</span> ScrollBarDemo();
+    frame.setTitle(<span class = "literal">"ScrollBarDemo"</span>);
+    frame.setLocationRelativeTo(<span class = "keyword">null</span>); <span class = "comment">// Center the frame</span>
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.pack();
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+
+  <span class = "keyword">public</span> ScrollBarDemo() {
+    <span class = "comment">// Add scroll bars and message panel to the frame</span>
+    setLayout(<span class = "keyword">new</span> BorderLayout());
+    add(messagePanel, BorderLayout.CENTER);
+    add(jscbVert, BorderLayout.EAST);
+    add(jscbHort, BorderLayout.SOUTH);
+
+    <span class = "comment">// Register listener for the scroll bars</span>
+    jscbHort.addAdjustmentListener(<span class = "keyword">new</span> AdjustmentListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> adjustmentValueChanged(AdjustmentEvent e) {
+        <span class = "comment">// getValue() and getMaximumValue() return int, but for better</span>
+        <span class = "comment">// precision, use double</span>
+        <span class = "keyword">double</span> value = jscbHort.getValue();
+        <span class = "keyword">double</span> maximumValue = jscbHort.getMaximum();
+        <span class = "keyword">double</span> newX = (value * messagePanel.getWidth() / 
+          maximumValue);
+        messagePanel.setXCoordinate((<span class = "keyword">int</span>)newX);
+      }
+    });
+    jscbVert.addAdjustmentListener(<span class = "keyword">new</span> AdjustmentListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> adjustmentValueChanged(AdjustmentEvent e) {
+        <span class = "comment">// getValue() and getMaximumValue() return int, but for better</span>
+        <span class = "comment">// precision, use double</span>
+        <span class = "keyword">double</span> value = jscbVert.getValue();
+        <span class = "keyword">double</span> maximumValue = jscbVert.getMaximum();
+        <span class = "keyword">double</span> newY = (value * messagePanel.getHeight() / 
+          maximumValue);
+        messagePanel.setYCoordinate((<span class = "keyword">int</span>)newY);
+      }
+    });
+  }
+}
+</pre>
+</body>
+</html>

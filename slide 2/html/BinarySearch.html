@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - BinarySearch.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> BinarySearch {
+  <span class = "comment">/** Use binary search to find the key in the list */</span>
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">int</span> binarySearch(<span class = "keyword">int</span>[] list, <span class = "keyword">int</span> key) {
+    <span class = "keyword">int</span> low = <span class = "literal">0</span>;
+    <span class = "keyword">int</span> high = list.length - <span class = "literal">1</span>;
+
+    <span class = "keyword">while</span> (high &gt;= low) {
+      <span class = "keyword">int</span> mid = (low + high) / <span class = "literal">2</span>;
+      <span class = "keyword">if</span> (key &lt; list[mid])
+        high = mid - <span class = "literal">1</span>;
+      <span class = "keyword">else</span> <span class = "keyword">if</span> (key == list[mid])
+        <span class = "keyword">return</span> mid;
+      <span class = "keyword">else</span>
+        low = mid + <span class = "literal">1</span>;
+    }
+
+    <span class = "keyword">return</span> -low - <span class = "literal">1</span>; <span class = "comment">// Now high &lt; low</span>
+  }
+}
+</pre>
+</body>
+</html>

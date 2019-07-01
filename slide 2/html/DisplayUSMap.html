@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - DisplayUSMap.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> javax.swing.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> DisplayUSMap <span class = "keyword">extends</span> JApplet {
+  <span class = "keyword">private</span> City[] vertices = {<span class = "keyword">new</span> City(<span class = "literal">"Seattle"</span>, <span class = "literal">75</span>, <span class = "literal">50</span>),
+  <span class = "keyword">new</span> City(<span class = "literal">"San Francisco"</span>, <span class = "literal">50</span>, <span class = "literal">210</span>),
+  <span class = "keyword">new</span> City(<span class = "literal">"Los Angeles"</span>, <span class = "literal">75</span>, <span class = "literal">275</span>), <span class = "keyword">new</span> City(<span class = "literal">"Denver"</span>, <span class = "literal">275</span>, <span class = "literal">175</span>),
+  <span class = "keyword">new</span> City(<span class = "literal">"Kansas City"</span>, <span class = "literal">400</span>, <span class = "literal">245</span>),
+  <span class = "keyword">new</span> City(<span class = "literal">"Chicago"</span>, <span class = "literal">450</span>, <span class = "literal">100</span>), <span class = "keyword">new</span> City(<span class = "literal">"Boston"</span>, <span class = "literal">700</span>, <span class = "literal">80</span>),
+  <span class = "keyword">new</span> City(<span class = "literal">"New York"</span>, <span class = "literal">675</span>, <span class = "literal">120</span>), <span class = "keyword">new</span> City(<span class = "literal">"Atlanta"</span>, <span class = "literal">575</span>, <span class = "literal">295</span>),
+  <span class = "keyword">new</span> City(<span class = "literal">"Miami"</span>, <span class = "literal">600</span>, <span class = "literal">400</span>), <span class = "keyword">new</span> City(<span class = "literal">"Dallas"</span>, <span class = "literal">408</span>, <span class = "literal">325</span>),
+  <span class = "keyword">new</span> City(<span class = "literal">"Houston"</span>, <span class = "literal">450</span>, <span class = "literal">360</span>) };
+
+  <span class = "comment">// Edge array for graph in Figure 27.1</span>
+  <span class = "keyword">private</span> <span class = "keyword">int</span>[][] edges = {
+    {<span class = "literal">0</span>, <span class = "literal">1</span>}, {<span class = "literal">0</span>, <span class = "literal">3</span>}, {<span class = "literal">0</span>, <span class = "literal">5</span>}, {<span class = "literal">1</span>, <span class = "literal">0</span>}, {<span class = "literal">1</span>, <span class = "literal">2</span>}, {<span class = "literal">1</span>, <span class = "literal">3</span>},
+    {<span class = "literal">2</span>, <span class = "literal">1</span>}, {<span class = "literal">2</span>, <span class = "literal">3</span>}, {<span class = "literal">2</span>, <span class = "literal">4</span>}, {<span class = "literal">2</span>, <span class = "literal">10</span>},
+    {<span class = "literal">3</span>, <span class = "literal">0</span>}, {<span class = "literal">3</span>, <span class = "literal">1</span>}, {<span class = "literal">3</span>, <span class = "literal">2</span>}, {<span class = "literal">3</span>, <span class = "literal">4</span>}, {<span class = "literal">3</span>, <span class = "literal">5</span>},
+    {<span class = "literal">4</span>, <span class = "literal">2</span>}, {<span class = "literal">4</span>, <span class = "literal">3</span>}, {<span class = "literal">4</span>, <span class = "literal">5</span>}, {<span class = "literal">4</span>, <span class = "literal">7</span>}, {<span class = "literal">4</span>, <span class = "literal">8</span>}, {<span class = "literal">4</span>, <span class = "literal">10</span>},
+    {<span class = "literal">5</span>, <span class = "literal">0</span>}, {<span class = "literal">5</span>, <span class = "literal">3</span>}, {<span class = "literal">5</span>, <span class = "literal">4</span>}, {<span class = "literal">5</span>, <span class = "literal">6</span>}, {<span class = "literal">5</span>, <span class = "literal">7</span>},
+    {<span class = "literal">6</span>, <span class = "literal">5</span>}, {<span class = "literal">6</span>, <span class = "literal">7</span>}, {<span class = "literal">7</span>, <span class = "literal">4</span>}, {<span class = "literal">7</span>, <span class = "literal">5</span>}, {<span class = "literal">7</span>, <span class = "literal">6</span>}, {<span class = "literal">7</span>, <span class = "literal">8</span>},
+    {<span class = "literal">8</span>, <span class = "literal">4</span>}, {<span class = "literal">8</span>, <span class = "literal">7</span>}, {<span class = "literal">8</span>, <span class = "literal">9</span>}, {<span class = "literal">8</span>, <span class = "literal">10</span>}, {<span class = "literal">8</span>, <span class = "literal">11</span>},
+    {<span class = "literal">9</span>, <span class = "literal">8</span>}, {<span class = "literal">9</span>, <span class = "literal">11</span>}, {<span class = "literal">10</span>, <span class = "literal">2</span>}, {<span class = "literal">10</span>, <span class = "literal">4</span>}, {<span class = "literal">10</span>, <span class = "literal">8</span>}, {<span class = "literal">10</span>, <span class = "literal">11</span>},
+    {<span class = "literal">11</span>, <span class = "literal">8</span>}, {<span class = "literal">11</span>, <span class = "literal">9</span>}, {<span class = "literal">11</span>, <span class = "literal">10</span>}
+  };
+
+  <span class = "keyword">private</span> Graph&lt;City&gt; graph 
+    = <span class = "keyword">new</span> UnweightedGraph&lt;City&gt;(edges, vertices);
+
+  <span class = "keyword">public</span> DisplayUSMap() {   
+    add(<span class = "keyword">new</span> GraphView(graph));
+  }
+  
+  <span class = "keyword">static</span> <span class = "keyword">class</span> City <span class = "keyword">implements</span> Displayable {
+    <span class = "keyword">private</span> <span class = "keyword">int</span> x, y;
+    <span class = "keyword">private</span> String name;
+    
+    City(String name, <span class = "keyword">int</span> x, <span class = "keyword">int</span> y) {
+      <span class = "keyword">this</span>.name = name;
+      <span class = "keyword">this</span>.x = x;
+      <span class = "keyword">this</span>.y = y;
+    }
+    
+    <span class = "keyword">public</span> <span class = "keyword">int</span> getX() {
+      <span class = "keyword">return</span> x;
+    }
+    
+    <span class = "keyword">public</span> <span class = "keyword">int</span> getY() {
+      <span class = "keyword">return</span> y;
+    }
+    
+    <span class = "keyword">public</span> String getName() {
+      <span class = "keyword">return</span> name;
+    }
+  }
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    JFrame frame = <span class = "keyword">new</span> JFrame(<span class = "literal">"DisplayUSMap"</span>);
+    DisplayUSMap applet = <span class = "keyword">new</span> DisplayUSMap();
+    frame.add(applet);
+    applet.init();
+    applet.start();
+
+    frame.setLocationRelativeTo(<span class = "keyword">null</span>);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(<span class = "literal">800</span>, <span class = "literal">500</span>);
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - MultipleWindowsDemo.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.awt.*;
+<span class = "keyword">import</span> java.awt.event.*;
+<span class = "keyword">import</span> javax.swing.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> MultipleWindowsDemo <span class = "keyword">extends</span> JFrame {
+  <span class = "keyword">private</span> JTextArea jta;
+  <span class = "keyword">private</span> JButton jbtShowHistogram = <span class = "keyword">new</span> JButton(<span class = "literal">"Show Histogram"</span>);
+  <span class = "keyword">private</span> Histogram histogram = <span class = "keyword">new</span> Histogram();
+
+  <span class = "comment">// Create a new frame to hold the histogram panel</span>
+  <span class = "keyword">private</span> JFrame histogramFrame = <span class = "keyword">new</span> JFrame();
+
+  <span class = "keyword">public</span> MultipleWindowsDemo() {
+    <span class = "comment">// Store text area in a scroll pane</span>
+    JScrollPane scrollPane = <span class = "keyword">new</span> JScrollPane(jta = <span class = "keyword">new</span> JTextArea());
+    scrollPane.setPreferredSize(<span class = "keyword">new</span> Dimension(<span class = "literal">300</span>, <span class = "literal">200</span>));
+    jta.setWrapStyleWord(<span class = "keyword">true</span>);
+    jta.setLineWrap(<span class = "keyword">true</span>);
+
+    <span class = "comment">// Place scroll pane and button in the frame</span>
+    add(scrollPane, BorderLayout.CENTER);
+    add(jbtShowHistogram, BorderLayout.SOUTH);
+
+    <span class = "comment">// Register listener</span>
+    jbtShowHistogram.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "comment">/** Handle the button action */</span>
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        <span class = "comment">// Count the letters in the text area</span>
+        <span class = "keyword">int</span>[] count = countLetters();
+
+        <span class = "comment">// Set the letter count to histogram for display</span>
+        histogram.showHistogram(count);
+
+        <span class = "comment">// Show the frame</span>
+        histogramFrame.setVisible(<span class = "keyword">true</span>);
+      }
+    });
+
+    <span class = "comment">// Create a new frame to hold the histogram panel</span>
+    histogramFrame.add(histogram);
+    histogramFrame.pack();
+    histogramFrame.setTitle(<span class = "literal">"Histogram"</span>);
+  }
+
+  <span class = "comment">/** Count the letters in the text area */</span>
+  <span class = "keyword">private</span> <span class = "keyword">int</span>[] countLetters() {
+    <span class = "comment">// Count for 26 letters</span>
+    <span class = "keyword">int</span>[] count = <span class = "keyword">new</span> <span class = "keyword">int</span>[<span class = "literal">26</span>];
+
+    <span class = "comment">// Get contents from the text area</span>
+    String text = jta.getText();
+
+    <span class = "comment">// Count occurrence of each letter (case insensitive)</span>
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; text.length(); i++) {
+      <span class = "keyword">char</span> character = text.charAt(i);
+
+      <span class = "keyword">if</span> ((character &gt;= <span class = "literal">'A'</span>) && (character &lt;= <span class = "literal">'Z'</span>)) {
+        count[(<span class = "keyword">int</span>)character - <span class = "literal">65</span>]++; <span class = "comment">// The ASCII for 'A' is 65</span>
+      }
+      <span class = "keyword">else</span> <span class = "keyword">if</span> ((character &gt;= <span class = "literal">'a'</span>) && (character &lt;= <span class = "literal">'z'</span>)) {
+        count[(<span class = "keyword">int</span>)character - <span class = "literal">97</span>]++; <span class = "comment">// The ASCII for 'a' is 97</span>
+      }
+    }
+
+    <span class = "keyword">return</span> count; <span class = "comment">// Return the count array</span>
+  }
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    MultipleWindowsDemo frame = <span class = "keyword">new</span> MultipleWindowsDemo();
+    frame.setLocationRelativeTo(<span class = "keyword">null</span>); <span class = "comment">// Center the frame</span>
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setTitle(<span class = "literal">"MultipleWindowsDemo"</span>);
+    frame.pack();
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+}
+</pre>
+</body>
+</html>

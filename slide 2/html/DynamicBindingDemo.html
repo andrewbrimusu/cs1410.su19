@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - DynamicBindingDemo.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> DynamicBindingDemo {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+	Object o = <span class = "keyword">new</span> GraduateStudent(); <span class = "comment">// implicit casting</span>
+	
+	Object o1 = <span class = "keyword">new</span> Object();
+	
+	<span class = "keyword">if</span> (o1 <span class = "keyword">instanceof</span> GraduateStudent) {
+	  System.out.println(<span class = "literal">"Never got here"</span>);
+	  GraduateStudent gs = (GraduateStudent)o1; <span class = "comment">// explicit casting</span>
+	}
+	
+    m(o);
+    m(<span class = "keyword">new</span> Student());
+    m(<span class = "keyword">new</span> Person());
+    m(<span class = "keyword">new</span> Object());
+  }
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> m(Object x) {
+    System.out.println(x.toString());
+  }
+}
+
+<span class = "keyword">class</span> GraduateStudent <span class = "keyword">extends</span> Student {
+}
+
+<span class = "keyword">class</span> Student <span class = "keyword">extends</span> Person {
+  <span class = "keyword">public</span> String toString() {
+    <span class = "keyword">return</span> <span class = "literal">"Student"</span>;
+  }
+}
+
+<span class = "keyword">class</span> Person <span class = "keyword">extends</span> Object {
+  <span class = "keyword">public</span> String toString() {
+    <span class = "keyword">return</span> <span class = "literal">"Person"</span>;
+  }
+}
+</pre>
+</body>
+</html>

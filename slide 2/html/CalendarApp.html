@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - CalendarApp.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.awt.*;
+<span class = "keyword">import</span> java.awt.event.*;
+<span class = "keyword">import</span> javax.swing.*;
+<span class = "keyword">import</span> javax.swing.border.*;
+<span class = "keyword">import</span> java.util.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> CalendarApp <span class = "keyword">extends</span> JApplet {
+  <span class = "comment">// Create a CalendarPanel for showing calendars</span>
+  <span class = "keyword">private</span> CalendarPanel calendarPanel = <span class = "keyword">new</span> CalendarPanel();
+
+  <span class = "comment">// Combo box for selecting available locales</span>
+  <span class = "keyword">private</span> JComboBox jcboLocale = <span class = "keyword">new</span> JComboBox();
+
+  <span class = "comment">// Declare locales to store available locales</span>
+  <span class = "keyword">private</span> Locale locales[] = Calendar.getAvailableLocales();
+
+  <span class = "comment">// Buttons Prior and Next for displaying prior and next month</span>
+  <span class = "keyword">private</span> JButton jbtPrior = <span class = "keyword">new</span> JButton(<span class = "literal">"Prior"</span>);
+  <span class = "keyword">private</span> JButton jbtNext = <span class = "keyword">new</span> JButton(<span class = "literal">"Next"</span>);
+
+  <span class = "comment">/** Initialize the applet */</span>
+  <span class = "keyword">public</span> <span class = "keyword">void</span> init() {
+    <span class = "comment">// Panel jpLocale to hold the combo box for selecting locales</span>
+    JPanel jpLocale = <span class = "keyword">new</span> JPanel(<span class = "keyword">new</span> FlowLayout());
+    jpLocale.setBorder(<span class = "keyword">new</span> TitledBorder(<span class = "literal">"Choose a locale"</span>));
+    jpLocale.add(jcboLocale);
+
+    <span class = "comment">// Initialize the combo box to add locale names</span>
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; locales.length; i++)
+      jcboLocale.addItem(locales[i].getDisplayName());
+
+    <span class = "comment">// Panel jpButtons to hold buttons</span>
+    JPanel jpButtons = <span class = "keyword">new</span> JPanel(<span class = "keyword">new</span> FlowLayout());
+    jpButtons.add(jbtPrior);
+    jpButtons.add(jbtNext);
+
+    <span class = "comment">// Panel jpCalendar to hold calendarPanel and buttons</span>
+    JPanel jpCalendar = <span class = "keyword">new</span> JPanel(<span class = "keyword">new</span> BorderLayout());
+    jpCalendar.add(calendarPanel, BorderLayout.CENTER);
+    jpCalendar.add(jpButtons, BorderLayout.SOUTH);
+
+    <span class = "comment">// Place jpCalendar and jpLocale to the applet</span>
+    add(jpCalendar, BorderLayout.CENTER);
+    add(jpLocale, BorderLayout.SOUTH);
+
+    <span class = "comment">// Register listeners</span>
+    jcboLocale.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        <span class = "keyword">if</span> (e.getSource() == jcboLocale)
+          calendarPanel.changeLocale(
+            locales[jcboLocale.getSelectedIndex()]);
+      }
+    });
+
+    jbtPrior.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        <span class = "keyword">int</span> currentMonth = calendarPanel.getMonth();
+        <span class = "keyword">if</span> (currentMonth == <span class = "literal">0</span>) <span class = "comment">// The previous month is 11 for Dec</span>
+          calendarPanel.setYear(calendarPanel.getYear() - <span class = "literal">1</span>);
+          calendarPanel.setMonth((currentMonth - <span class = "literal">1</span>) % <span class = "literal">12</span>);
+      }});
+
+    jbtNext.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        <span class = "keyword">int</span> currentMonth = calendarPanel.getMonth();
+        <span class = "keyword">if</span> (currentMonth == <span class = "literal">11</span>) <span class = "comment">// The next month is 0 for Jan</span>
+          calendarPanel.setYear(calendarPanel.getYear() + <span class = "literal">1</span>);
+
+        calendarPanel.setMonth((currentMonth + <span class = "literal">1</span>) % <span class = "literal">12</span>);
+      }});
+
+    calendarPanel.changeLocale(
+      locales[jcboLocale.getSelectedIndex()]);
+  }
+
+  <span class = "comment">/** Main method */</span>
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    <span class = "comment">// Create a frame</span>
+    JFrame frame = <span class = "keyword">new</span> JFrame(<span class = "literal">"CalendarApp"</span>);
+
+    <span class = "comment">// Create an instance of the applet</span>
+    CalendarApp applet = <span class = "keyword">new</span> CalendarApp();
+
+    <span class = "comment">// Add the applet instance to the frame</span>
+    frame.getContentPane().add(applet, BorderLayout.CENTER);
+
+    <span class = "comment">// Invoke init() and start()</span>
+    applet.init();
+    applet.start();
+
+    <span class = "comment">// Display the frame</span>
+    frame.pack();
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+}
+</pre>
+</body>
+</html>

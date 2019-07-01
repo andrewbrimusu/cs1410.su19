@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - TestMyHashSet.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> TestMyHashSet {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    <span class = "comment">// Create a MyHashSet</span>
+    MySet&lt;String&gt; set = <span class = "keyword">new</span> MyHashSet&lt;String&gt;();
+    set.add(<span class = "literal">"Smith"</span>);
+    set.add(<span class = "literal">"Anderson"</span>);
+    set.add(<span class = "literal">"Lewis"</span>);
+    set.add(<span class = "literal">"Cook"</span>);
+
+    System.out.println(<span class = "literal">"Elements in set: "</span> + set);
+    System.out.println(<span class = "literal">"Number of elements in set: "</span> + set.size());
+    System.out.println(<span class = "literal">"Is Smith in set? "</span> + set.contains(<span class = "literal">"Smith"</span>));
+
+    set.remove(<span class = "literal">"Smith"</span>);
+    System.out.println(<span class = "literal">"Elements in set: "</span> + set);
+
+    set.clear();
+    System.out.println(<span class = "literal">"Elements in set: "</span> + set);
+  }
+}
+</pre>
+</body>
+</html>

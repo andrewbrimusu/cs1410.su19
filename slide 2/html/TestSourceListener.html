@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - TestSourceListener.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> javax.swing.*;
+<span class = "keyword">import</span> java.awt.event.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> TestSourceListener {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    JFrame frame = <span class = "keyword">new</span> JFrame(<span class = "literal">"TestSourceListener"</span>);
+    <span class = "comment">// Create a source object</span>
+    JButton jbt = <span class = "keyword">new</span> JButton(<span class = "literal">"OK"</span>);
+    frame.add(jbt);
+    frame.setSize(<span class = "literal">200</span>, <span class = "literal">200</span>);
+    frame.setVisible(<span class = "keyword">true</span>);
+
+    <span class = "comment">// Create listeners</span>
+    MyListener listener = <span class = "keyword">new</span> MyListener();
+
+    <span class = "comment">// Register listeners</span>
+    jbt.addActionListener(listener);
+  }
+}
+
+<span class = "comment">/** MyListener class */</span>
+<span class = "keyword">class</span> MyListener <span class = "keyword">implements</span> ActionListener {
+  <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+    System.out.println(<span class = "literal">"I will process it!"</span>);
+  }
+}
+</pre>
+</body>
+</html>

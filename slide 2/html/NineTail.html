@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - NineTail.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.util.Scanner;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> NineTail {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    <span class = "comment">// Prompt the user to enter nine coins H and T's</span>
+    System.out.print(<span class = "literal">"Enter an initial nine coin H’s and T's: "</span>);
+    Scanner input = <span class = "keyword">new</span> Scanner(System.in);
+    String s = input.nextLine(); 
+    <span class = "keyword">char</span>[] initialNode = s.toCharArray();
+
+    NineTailModel model = <span class = "keyword">new</span> NineTailModel();
+    java.util.List&lt;Integer&gt; path =
+      model.getShortestPath(NineTailModel.getIndex(initialNode));
+
+    System.out.println(<span class = "literal">"The steps to flip the coins are "</span>);
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; path.size(); i++)
+      NineTailModel.printNode(
+        NineTailModel.getNode(path.get(i).intValue()));    
+  }
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - RationalMatrix.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> RationalMatrix <span class = "keyword">extends</span> GenericMatrix&lt;Rational&gt; {
+  <span class = "comment">/** Implement the add method for adding two rational elements */</span>
+  <span class = "keyword">protected</span> Rational add(Rational r1, Rational r2) {
+    <span class = "keyword">return</span> r1.add(r2);
+  }
+
+  <span class = "comment">/** Implement the multiply method for multiplying
+     two rational elements */</span>
+  <span class = "keyword">protected</span> Rational multiply(Rational r1, Rational r2) {
+    <span class = "keyword">return</span> r1.multiply(r2);
+  }
+
+  <span class = "comment">/** Implement the zero method to specify zero for Rational */</span>
+  <span class = "keyword">protected</span> Rational zero() {
+    <span class = "keyword">return</span> <span class = "keyword">new</span> Rational(<span class = "literal">0</span>,<span class = "literal">1</span>);
+  }
+}
+</pre>
+</body>
+</html>

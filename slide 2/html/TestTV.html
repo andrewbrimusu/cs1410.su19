@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - TestTV.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> TestTV {  
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    TV tv1 = <span class = "keyword">new</span> TV();
+    tv1.turnOn();
+    tv1.setChannel(<span class = "literal">30</span>);
+    tv1.setVolume(<span class = "literal">3</span>);
+    
+    TV tv2 = <span class = "keyword">new</span> TV();
+    tv2.turnOn();
+    tv2.channelUp();
+    tv2.channelUp();
+    tv2.volumeUp();
+    
+    System.out.println(<span class = "literal">"tv1's channel is "</span> + tv1.channel 
+      + <span class = "literal">" and volume level is "</span> + tv1.volumeLevel);
+    System.out.println(<span class = "literal">"tv2's channel is "</span> + tv2.channel 
+      + <span class = "literal">" and volume level is "</span> + tv2.volumeLevel);
+  }
+}
+</pre>
+</body>
+</html>

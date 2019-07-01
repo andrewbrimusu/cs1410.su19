@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - GraphView.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> GraphView <span class = "keyword">extends</span> javax.swing.JPanel {
+  <span class = "keyword">private</span> Graph&lt;? <span class = "keyword">extends</span> Displayable&gt; graph;
+  
+  <span class = "keyword">public</span> GraphView(Graph&lt;? <span class = "keyword">extends</span> Displayable&gt; graph) {
+    <span class = "keyword">this</span>.graph = graph;
+  }
+  
+  <span class = "keyword">protected</span> <span class = "keyword">void</span> paintComponent(java.awt.Graphics g) {
+    <span class = "keyword">super</span>.paintComponent(g);
+    
+    <span class = "comment">// Draw vertices</span>
+    java.util.List&lt;? <span class = "keyword">extends</span> Displayable&gt; vertices 
+      = graph.getVertices();    
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; graph.getSize(); i++) {
+      <span class = "keyword">int</span> x = vertices.get(i).getX();
+      <span class = "keyword">int</span> y = vertices.get(i).getY();
+      String name = vertices.get(i).getName();
+      
+      g.fillOval(x - <span class = "literal">8</span>, y - <span class = "literal">8</span>, <span class = "literal">16</span>, <span class = "literal">16</span>); <span class = "comment">// Display a vertex</span>
+      g.drawString(name, x - <span class = "literal">12</span>, y - <span class = "literal">12</span>); <span class = "comment">// Display the name</span>
+    }
+    
+    <span class = "comment">// Draw edges for pair of vertices</span>
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; graph.getSize(); i++) {
+      java.util.List&lt;Integer&gt; neighbors = graph.getNeighbors(i);
+      <span class = "keyword">for</span> (<span class = "keyword">int</span> j = <span class = "literal">0</span>; j &lt; neighbors.size(); j++) {
+        <span class = "keyword">int</span> v = neighbors.get(j);
+        <span class = "keyword">int</span> x1 = graph.getVertex(i).getX();
+        <span class = "keyword">int</span> y1 = graph.getVertex(i).getY();
+        <span class = "keyword">int</span> x2 = graph.getVertex(v).getX();
+        <span class = "keyword">int</span> y2 = graph.getVertex(v).getY();
+        
+        g.drawLine(x1, y1, x2, y2); <span class = "comment">// Draw an edge for (i, v)</span>
+      }
+    }
+  }
+}
+</pre>
+</body>
+</html>

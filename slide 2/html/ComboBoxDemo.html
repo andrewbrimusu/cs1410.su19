@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - ComboBoxDemo.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.awt.*;
+<span class = "keyword">import</span> java.awt.event.*;
+<span class = "keyword">import</span> javax.swing.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> ComboBoxDemo <span class = "keyword">extends</span> JFrame {
+  <span class = "comment">// Declare an array of Strings for flag titles</span>
+  <span class = "keyword">private</span> String[] flagTitles = {<span class = "literal">"Canada"</span>, <span class = "literal">"China"</span>, <span class = "literal">"Denmark"</span>,
+    <span class = "literal">"France"</span>, <span class = "literal">"Germany"</span>, <span class = "literal">"India"</span>, <span class = "literal">"Norway"</span>, <span class = "literal">"United Kingdom"</span>,
+    <span class = "literal">"United States of America"</span>};
+
+  <span class = "comment">// Declare an ImageIcon array for the national flags of 9 countries</span>
+  <span class = "keyword">private</span> ImageIcon[] flagImage = {
+    <span class = "keyword">new</span> ImageIcon(<span class = "literal">"image/ca.gif"</span>),
+    <span class = "keyword">new</span> ImageIcon(<span class = "literal">"image/china.gif"</span>),
+    <span class = "keyword">new</span> ImageIcon(<span class = "literal">"image/denmark.gif"</span>),
+    <span class = "keyword">new</span> ImageIcon(<span class = "literal">"image/fr.gif"</span>),
+    <span class = "keyword">new</span> ImageIcon(<span class = "literal">"image/germany.gif"</span>),
+    <span class = "keyword">new</span> ImageIcon(<span class = "literal">"image/india.gif"</span>),
+    <span class = "keyword">new</span> ImageIcon(<span class = "literal">"image/norway.gif"</span>),
+    <span class = "keyword">new</span> ImageIcon(<span class = "literal">"image/uk.gif"</span>),
+    <span class = "keyword">new</span> ImageIcon(<span class = "literal">"image/us.gif"</span>)
+  };
+
+  <span class = "comment">// Declare an array of strings for flag descriptions</span>
+  <span class = "keyword">private</span> String[] flagDescription = <span class = "keyword">new</span> String[<span class = "literal">9</span>];
+
+  <span class = "comment">// Declare and create a description panel</span>
+  <span class = "keyword">private</span> DescriptionPanel descriptionPanel = <span class = "keyword">new</span> DescriptionPanel();
+
+  <span class = "comment">// Create a combo box for selecting countries</span>
+  <span class = "keyword">private</span> JComboBox jcbo = <span class = "keyword">new</span> JComboBox(flagTitles);
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    ComboBoxDemo frame = <span class = "keyword">new</span> ComboBoxDemo();
+    frame.pack();
+    frame.setTitle(<span class = "literal">"ComboBoxDemo"</span>);
+    frame.setLocationRelativeTo(<span class = "keyword">null</span>); <span class = "comment">// Center the frame</span>
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+
+  <span class = "keyword">public</span> ComboBoxDemo() {
+    <span class = "comment">// Set text description</span>
+    flagDescription[<span class = "literal">0</span>] = <span class = "literal">"The Maple Leaf flag \n\n"</span> +
+      <span class = "literal">"The Canadian National Flag was adopted by the Canadian "</span> +
+      <span class = "literal">"Parliament on October <span class = "literal">22</span>, <span class = "literal">1964</span> and was proclaimed into law "</span> +
+      <span class = "literal">"by Her Majesty Queen Elizabeth II (the Queen of Canada) on "</span> +
+      <span class = "literal">"February <span class = "literal">15</span>, <span class = "literal">1965</span>. The Canadian Flag (colloquially known "</span> +
+      <span class = "literal">"as The Maple Leaf Flag) is a red flag of the proportions "</span> +
+      <span class = "literal">"two by length and one by width, containing in its center a "</span> +
+      <span class = "literal">"white square, with a single red stylized eleven-point "</span> +
+      <span class = "literal">"mapleleaf centered in the white square."</span>;
+    flagDescription[<span class = "literal">1</span>] = <span class = "literal">"Description for China ... "</span>;
+    flagDescription[<span class = "literal">2</span>] = <span class = "literal">"Description for Denmark ... "</span>;
+    flagDescription[<span class = "literal">3</span>] = <span class = "literal">"Description for France ... "</span>;
+    flagDescription[<span class = "literal">4</span>] = <span class = "literal">"Description for Germany ... "</span>;
+    flagDescription[<span class = "literal">5</span>] = <span class = "literal">"Description for India ... "</span>;
+    flagDescription[<span class = "literal">6</span>] = <span class = "literal">"Description for Norway ... "</span>;
+    flagDescription[<span class = "literal">7</span>] = <span class = "literal">"Description for UK ... "</span>;
+    flagDescription[<span class = "literal">8</span>] = <span class = "literal">"Description for US ... "</span>;
+
+    <span class = "comment">// Set the first country (Canada) for display</span>
+    setDisplay(<span class = "literal">0</span>);
+
+    <span class = "comment">// Add combo box and description panel to the list</span>
+    add(jcbo, BorderLayout.NORTH);
+    add(descriptionPanel, BorderLayout.CENTER);
+
+    <span class = "comment">// Register listener</span>
+    jcbo.addItemListener(<span class = "keyword">new</span> ItemListener() {
+      <span class = "comment">/** Handle item selection */</span>
+      <span class = "keyword">public</span> <span class = "keyword">void</span> itemStateChanged(ItemEvent e) {
+        setDisplay(jcbo.getSelectedIndex());
+      }
+    });
+  }
+
+  <span class = "comment">/** Set display information on the description panel */</span>
+  <span class = "keyword">public</span> <span class = "keyword">void</span> setDisplay(<span class = "keyword">int</span> index) {
+    descriptionPanel.setTitle(flagTitles[index]);
+    descriptionPanel.setImageIcon(flagImage[index]);
+    descriptionPanel.setDescription(flagDescription[index]);
+  }
+}
+</pre>
+</body>
+</html>

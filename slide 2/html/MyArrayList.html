@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - MyArrayList.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> MyArrayList&lt;E&gt; <span class = "keyword">extends</span> MyAbstractList&lt;E&gt; {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">final</span> <span class = "keyword">int</span> INITIAL_CAPACITY = <span class = "literal">16</span>;
+  <span class = "keyword">private</span> E[] data = (E[])<span class = "keyword">new</span> Object[INITIAL_CAPACITY];
+
+  <span class = "comment">/** Create a default list */</span>
+  <span class = "keyword">public</span> MyArrayList() {
+  }
+
+  <span class = "comment">/** Create a list from an array of objects */</span>
+  <span class = "keyword">public</span> MyArrayList(E[] objects) {
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; objects.length; i++)
+      add(objects[i]); <span class = "comment">// Warning: don’t use super(objects)! </span>
+  }
+
+  <span class = "comment">/** Add a new element at the specified index in this list */</span>
+  <span class = "keyword">public</span> <span class = "keyword">void</span> add(<span class = "keyword">int</span> index, E e) {
+    ensureCapacity();
+
+    <span class = "comment">// Move the elements to the right after the specified index</span>
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = size - <span class = "literal">1</span>; i &gt;= index; i--)
+      data[i + <span class = "literal">1</span>] = data[i];
+
+    <span class = "comment">// Insert new element to data[index]</span>
+    data[index] = e;
+
+    <span class = "comment">// Increase size by 1</span>
+    size++;
+  }
+
+  <span class = "comment">/** Create a new larger array, double the current size */</span>
+  <span class = "keyword">private</span> <span class = "keyword">void</span> ensureCapacity() {
+    <span class = "keyword">if</span> (size &gt;= data.length) {
+      E[] newData = (E[])(<span class = "keyword">new</span> Object[size * <span class = "literal">2</span> + <span class = "literal">1</span>]);
+      System.arraycopy(data, <span class = "literal">0</span>, newData, <span class = "literal">0</span>, size);
+      data = newData;
+    }
+  }
+
+  <span class = "comment">/** Clear the list */</span>
+  <span class = "keyword">public</span> <span class = "keyword">void</span> clear() {
+    data = (E[])<span class = "keyword">new</span> Object[INITIAL_CAPACITY];
+    size = <span class = "literal">0</span>;
+  }
+
+  <span class = "comment">/** Return true if this list contains the element */</span>
+  <span class = "keyword">public</span> <span class = "keyword">boolean</span> contains(E e) {
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; size; i++)
+      <span class = "keyword">if</span> (e.equals(data[i])) <span class = "keyword">return</span> <span class = "keyword">true</span>;
+
+    <span class = "keyword">return</span> <span class = "keyword">false</span>;
+  }
+
+  <span class = "comment">/** Return the element from this list at the specified index */</span>
+  <span class = "keyword">public</span> E get(<span class = "keyword">int</span> index) {
+    <span class = "keyword">return</span> data[index];
+  }
+
+  <span class = "comment">/** Return the index of the first matching element in this list.
+   *  Return -1 if no match. */</span>
+  <span class = "keyword">public</span> <span class = "keyword">int</span> indexOf(E e) {
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; size; i++)
+      <span class = "keyword">if</span> (e.equals(data[i])) <span class = "keyword">return</span> i;
+
+    <span class = "keyword">return</span> -<span class = "literal">1</span>;
+  }
+
+  <span class = "comment">/** Return the index of the last matching element in this list
+   *  Return -1 if no match. */</span>
+  <span class = "keyword">public</span> <span class = "keyword">int</span> lastIndexOf(E e) {
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = size - <span class = "literal">1</span>; i &gt;= <span class = "literal">0</span>; i--)
+      <span class = "keyword">if</span> (e.equals(data[i])) <span class = "keyword">return</span> i;
+
+    <span class = "keyword">return</span> -<span class = "literal">1</span>;
+  }
+
+  <span class = "comment">/** Remove the element at the specified position in this list
+   *  Shift any subsequent elements to the left.
+   *  Return the element that was removed from the list. */</span>
+  <span class = "keyword">public</span> E remove(<span class = "keyword">int</span> index) {
+    E e = data[index];
+
+    <span class = "comment">// Shift data to the left</span>
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> j = index; j &lt; size - <span class = "literal">1</span>; j++)
+      data[j] = data[j + <span class = "literal">1</span>];
+
+    data[size - <span class = "literal">1</span>] = <span class = "keyword">null</span>; <span class = "comment">// This element is now null</span>
+
+    <span class = "comment">// Decrement size</span>
+    size--;
+
+    <span class = "keyword">return</span> e;
+  }
+
+  <span class = "comment">/** Replace the element at the specified position in this list
+   *  with the specified element. */</span>
+  <span class = "keyword">public</span> E set(<span class = "keyword">int</span> index, E e) {
+    E old = data[index];
+    data[index] = e;
+    <span class = "keyword">return</span> old;
+  }
+
+  <span class = "comment">/** Override toString() to return elements in the list */</span>
+  <span class = "keyword">public</span> String toString() {
+    StringBuilder result = <span class = "keyword">new</span> StringBuilder(<span class = "literal">"["</span>);
+
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; size; i++) {
+      result.append(data[i]);
+      <span class = "keyword">if</span> (i &lt; size - <span class = "literal">1</span>) result.append(<span class = "literal">", "</span>);
+    }
+
+    <span class = "keyword">return</span> result.toString() + <span class = "literal">"]"</span>;
+  }
+
+  <span class = "comment">/** Trims the capacity to current size */</span>
+  <span class = "keyword">public</span> <span class = "keyword">void</span> trimToSize() {
+    <span class = "keyword">if</span> (size != data.length) { <span class = "comment">// If size == capacity, no need to trim</span>
+      E[] newData = (E[])(<span class = "keyword">new</span> Object[size]);
+      System.arraycopy(data, <span class = "literal">0</span>, newData, <span class = "literal">0</span>, size);
+      data = newData;
+    }
+  }
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - SliderDemo.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.awt.*;
+<span class = "keyword">import</span> javax.swing.*;
+<span class = "keyword">import</span> javax.swing.event.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> SliderDemo <span class = "keyword">extends</span> JFrame {
+  <span class = "comment">// Create horizontal and vertical sliders</span>
+  <span class = "keyword">private</span> JSlider jsldHort = <span class = "keyword">new</span> JSlider(JSlider.HORIZONTAL);
+  <span class = "keyword">private</span> JSlider jsldVert = <span class = "keyword">new</span> JSlider(JSlider.VERTICAL);
+
+  <span class = "comment">// Create a MessagePanel</span>
+  <span class = "keyword">private</span> MessagePanel messagePanel =
+    <span class = "keyword">new</span> MessagePanel(<span class = "literal">"Welcome to Java"</span>);
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    SliderDemo frame = <span class = "keyword">new</span> SliderDemo();
+    frame.setTitle(<span class = "literal">"SliderDemo"</span>);
+    frame.setLocationRelativeTo(<span class = "keyword">null</span>); <span class = "comment">// Center the frame</span>
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.pack();
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+
+  <span class = "keyword">public</span> SliderDemo() {
+    <span class = "comment">// Add sliders and message panel to the frame</span>
+    setLayout(<span class = "keyword">new</span> BorderLayout(<span class = "literal">5</span>, <span class = "literal">5</span>));
+    add(messagePanel, BorderLayout.CENTER);
+    add(jsldVert, BorderLayout.EAST);
+    add(jsldHort, BorderLayout.SOUTH);
+
+    <span class = "comment">// Set properties for sliders</span>
+    jsldHort.setMaximum(<span class = "literal">50</span>);
+    jsldHort.setPaintLabels(<span class = "keyword">true</span>);
+    jsldHort.setPaintTicks(<span class = "keyword">true</span>);
+    jsldHort.setMajorTickSpacing(<span class = "literal">10</span>);
+    jsldHort.setMinorTickSpacing(<span class = "literal">1</span>);
+    jsldHort.setPaintTrack(<span class = "keyword">false</span>);
+    jsldVert.setInverted(<span class = "keyword">true</span>);
+    jsldVert.setMaximum(<span class = "literal">10</span>);
+    jsldVert.setPaintLabels(<span class = "keyword">true</span>);
+    jsldVert.setPaintTicks(<span class = "keyword">true</span>);
+    jsldVert.setMajorTickSpacing(<span class = "literal">10</span>);
+    jsldVert.setMinorTickSpacing(<span class = "literal">1</span>);
+
+    <span class = "comment">// Register listener for the sliders</span>
+    jsldHort.addChangeListener(<span class = "keyword">new</span> ChangeListener() {
+      <span class = "comment">/** Handle scroll bar adjustment actions */</span>
+      <span class = "keyword">public</span> <span class = "keyword">void</span> stateChanged(ChangeEvent e) {
+        <span class = "comment">// getValue() and getMaximumValue() return int, but for better</span>
+        <span class = "comment">// precision, use double</span>
+        <span class = "keyword">double</span> value = jsldHort.getValue();
+        <span class = "keyword">double</span> maximumValue = jsldHort.getMaximum();
+        <span class = "keyword">double</span> newX = (value * messagePanel.getWidth() / 
+          maximumValue);
+        messagePanel.setXCoordinate((<span class = "keyword">int</span>)newX);
+      }
+    });
+    jsldVert.addChangeListener(<span class = "keyword">new</span> ChangeListener() {
+      <span class = "comment">/** Handle scroll bar adjustment actions */</span>
+      <span class = "keyword">public</span> <span class = "keyword">void</span> stateChanged(ChangeEvent e) {
+        <span class = "comment">// getValue() and getMaximumValue() return int, but for better</span>
+        <span class = "comment">// precision, use double</span>
+        <span class = "keyword">double</span> value = jsldVert.getValue();
+        <span class = "keyword">double</span> maximumValue = jsldVert.getMaximum();
+        <span class = "keyword">double</span> newY = (value * messagePanel.getHeight() / 
+          maximumValue);
+        messagePanel.setYCoordinate((<span class = "keyword">int</span>) newY);
+      }
+    });
+  }
+}
+</pre>
+</body>
+</html>

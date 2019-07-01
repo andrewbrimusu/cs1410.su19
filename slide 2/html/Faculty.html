@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - Faculty.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> Faculty <span class = "keyword">extends</span> Employee {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    <span class = "keyword">new</span> Employee(<span class = "literal">"Eric"</span>);
+  }
+  
+  <span class = "keyword">public</span> Faculty() {
+    <span class = "keyword">super</span>();
+    System.out.println(<span class = "literal">"(<span class = "literal">4</span>) Faculty's no-arg constructor is invoked"</span>);
+  }
+}
+
+<span class = "keyword">class</span> Employee <span class = "keyword">extends</span> PPP {
+  <span class = "keyword">public</span> Employee() {
+    <span class = "keyword">this</span>(<span class = "literal">"(<span class = "literal">2</span>) Invoke Employee’s overloaded constructor"</span>);
+    System.out.println(<span class = "literal">"(<span class = "literal">3</span>) Employee's no-arg constructor is invoked"</span>);
+  }
+
+  <span class = "keyword">public</span> Employee(String s) {
+    <span class = "keyword">super</span>();
+    System.out.println(s);
+  }
+}
+
+<span class = "keyword">class</span> PPP {
+  <span class = "keyword">public</span> PPP() {
+    System.out.println(<span class = "literal">"(<span class = "literal">1</span>) Person's no-arg constructor is invoked"</span>);
+  }
+}
+</pre>
+</body>
+</html>

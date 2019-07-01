@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - TestTree24.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> TestTree24 {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    <span class = "comment">// Create a 2-4 tree</span>
+    Tree24&lt;Integer&gt; tree = <span class = "keyword">new</span> Tree24&lt;Integer&gt;();
+
+    tree.insert(<span class = "literal">34</span>);
+    tree.insert(<span class = "literal">3</span>);
+    tree.insert(<span class = "literal">50</span>);
+    tree.insert(<span class = "literal">20</span>);
+    tree.insert(<span class = "literal">15</span>);
+    tree.insert(<span class = "literal">16</span>);
+    tree.insert(<span class = "literal">25</span>);
+    tree.insert(<span class = "literal">27</span>);
+    tree.insert(<span class = "literal">29</span>);
+    tree.insert(<span class = "literal">24</span>);
+    System.out.print(<span class = "literal">"\nAfter inserting 24:"</span>);
+    printTree(tree);
+    tree.insert(<span class = "literal">23</span>);
+    tree.insert(<span class = "literal">22</span>);
+    tree.insert(<span class = "literal">60</span>);
+    tree.insert(<span class = "literal">70</span>);
+    System.out.print(<span class = "literal">"\nAfter inserting 70:"</span>);
+    printTree(tree);
+
+    tree.delete(<span class = "literal">34</span>);
+    System.out.print(<span class = "literal">"\nAfter deleting 34:"</span>);
+    printTree(tree);
+
+    tree.delete(<span class = "literal">25</span>);
+    System.out.print(<span class = "literal">"\nAfter deleting 25:"</span>);
+    printTree(tree);
+
+    tree.delete(<span class = "literal">50</span>);
+    System.out.print(<span class = "literal">"\nAfter deleting 50:"</span>);
+    printTree(tree);
+
+    tree.delete(<span class = "literal">16</span>);
+    System.out.print(<span class = "literal">"\nAfter deleting 16:"</span>);
+    printTree(tree);
+
+    tree.delete(<span class = "literal">3</span>);
+    System.out.print(<span class = "literal">"\nAfter deleting 3:"</span>);
+    printTree(tree);
+
+    tree.delete(<span class = "literal">15</span>);
+    System.out.print(<span class = "literal">"\nAfter deleting 15:"</span>);
+    printTree(tree);
+  }
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> printTree(Tree tree) {
+    <span class = "comment">// Traverse tree</span>
+    System.out.print(<span class = "literal">"\nPreorder: "</span>);
+    tree.preorder();
+    System.out.print(<span class = "literal">"\nThe number of nodes is "</span> + tree.getSize());
+    System.out.println();
+  }
+}
+</pre>
+</body>
+</html>

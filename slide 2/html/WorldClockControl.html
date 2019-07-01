@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - WorldClockControl.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> javax.swing.*;
+<span class = "keyword">import</span> java.awt.*;
+<span class = "keyword">import</span> java.awt.event.*;
+<span class = "keyword">import</span> java.util.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> WorldClockControl <span class = "keyword">extends</span> JPanel {
+  <span class = "comment">// Obtain all available locales and time zone ids</span>
+  <span class = "keyword">private</span> Locale[] availableLocales = Locale.getAvailableLocales();
+  <span class = "keyword">private</span> String[] availableTimeZones = TimeZone.getAvailableIDs();
+
+  <span class = "comment">// Comboxes to display available locales and time zones</span>
+  <span class = "keyword">private</span> JComboBox jcbLocales = <span class = "keyword">new</span> JComboBox();
+  <span class = "keyword">private</span> JComboBox jcbTimeZones = <span class = "keyword">new</span> JComboBox();
+
+  <span class = "comment">// Create a clock</span>
+  <span class = "keyword">private</span> WorldClock clock = <span class = "keyword">new</span> WorldClock();
+
+  <span class = "keyword">public</span> WorldClockControl() {
+    <span class = "comment">// Initialize jcbLocales with all available locales</span>
+    setAvailableLocales();
+
+    <span class = "comment">// Initialize jcbTimeZones with all available time zones</span>
+    setAvailableTimeZones();
+
+    <span class = "comment">// Initialize locale and time zone</span>
+    clock.setLocale(
+      availableLocales[jcbLocales.getSelectedIndex()]);
+    clock.setTimeZone(TimeZone.getTimeZone(
+      availableTimeZones[jcbTimeZones.getSelectedIndex()]));
+
+    JPanel panel1 = <span class = "keyword">new</span> JPanel();
+    panel1.setLayout(<span class = "keyword">new</span> GridLayout(<span class = "literal">2</span>, <span class = "literal">1</span>));
+    panel1.add(<span class = "keyword">new</span> JLabel(<span class = "literal">"Locale"</span>));
+    panel1.add(<span class = "keyword">new</span> JLabel(<span class = "literal">"Time Zone"</span>));
+    JPanel panel2 = <span class = "keyword">new</span> JPanel();
+
+    panel2.setLayout(<span class = "keyword">new</span> GridLayout(<span class = "literal">2</span>, <span class = "literal">1</span>));
+    panel2.add(jcbLocales, BorderLayout.CENTER);
+    panel2.add(jcbTimeZones, BorderLayout.CENTER);
+
+    JPanel panel3 = <span class = "keyword">new</span> JPanel();
+    panel3.setLayout(<span class = "keyword">new</span> BorderLayout());
+    panel3.add(panel1, BorderLayout.WEST);
+    panel3.add(panel2, BorderLayout.CENTER);
+
+    setLayout(<span class = "keyword">new</span> BorderLayout());
+    add(panel3, BorderLayout.NORTH);
+    add(clock, BorderLayout.CENTER);
+
+    jcbLocales.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        clock.setLocale(
+          availableLocales[jcbLocales.getSelectedIndex()]);
+      }
+    });
+    jcbTimeZones.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        clock.setTimeZone(TimeZone.getTimeZone(
+          availableTimeZones[jcbTimeZones.getSelectedIndex()]));
+      }
+    });
+  }
+
+  <span class = "keyword">private</span> <span class = "keyword">void</span> setAvailableLocales() {
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; availableLocales.length; i++) {
+      jcbLocales.addItem(availableLocales[i].getDisplayName() + <span class = "literal">" "</span>
+        + availableLocales[i].toString());
+    }
+  }
+
+  <span class = "keyword">private</span> <span class = "keyword">void</span> setAvailableTimeZones() {
+    <span class = "comment">// Sort time zones</span>
+    Arrays.sort(availableTimeZones);
+    <span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; availableTimeZones.length; i++) {
+      jcbTimeZones.addItem(availableTimeZones[i]);
+    }
+  }
+}
+</pre>
+</body>
+</html>

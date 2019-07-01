@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - TestCircleRectangle.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> TestCircleRectangle {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    Circle4 circle = <span class = "keyword">new</span> Circle4(<span class = "literal">1</span>);
+    System.out.println(<span class = "literal">"A circle "</span> + circle.toString());
+    System.out.println(<span class = "literal">"The radius is "</span> + circle.getRadius());
+    System.out.println(<span class = "literal">"The area is "</span> + circle.getArea());
+    System.out.println(<span class = "literal">"The diameter is "</span> + circle.getDiameter());
+
+    Rectangle1 rectangle = <span class = "keyword">new</span> Rectangle1(<span class = "literal">2</span>, <span class = "literal">4</span>);
+    System.out.println(<span class = "literal">"\nA rectangle "</span> + rectangle.toString());
+    System.out.println(<span class = "literal">"The area is "</span> + rectangle.getArea());
+    System.out.println(<span class = "literal">"The perimeter is "</span> +
+      rectangle.getPerimeter());
+  }
+}
+</pre>
+</body>
+</html>

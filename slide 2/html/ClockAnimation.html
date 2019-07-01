@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - ClockAnimation.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.awt.event.*;
+<span class = "keyword">import</span> javax.swing.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> ClockAnimation <span class = "keyword">extends</span> JFrame {
+  <span class = "keyword">private</span> StillClock clock = <span class = "keyword">new</span> StillClock();
+
+  <span class = "keyword">public</span> ClockAnimation() {
+    add(clock);
+
+    <span class = "comment">// Create a timer with delay 1000 ms</span>
+    Timer timer = <span class = "keyword">new</span> Timer(<span class = "literal">1000</span>, <span class = "keyword">new</span> TimerListener());
+    timer.start();
+  }
+
+  <span class = "keyword">private</span> <span class = "keyword">class</span> TimerListener <span class = "keyword">implements</span> ActionListener {
+    <span class = "comment">/** Handle the action event */</span>
+    <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+      <span class = "comment">// Set new time and repaint the clock to display current time</span>
+      clock.setCurrentTime();
+      clock.repaint();
+    }
+  }
+
+  <span class = "comment">/** Main method */</span>
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    JFrame frame = <span class = "keyword">new</span> ClockAnimation();
+    frame.setTitle(<span class = "literal">"ClockAnimation"</span>);
+    frame.setSize(<span class = "literal">200</span>, <span class = "literal">200</span>);
+    frame.setLocationRelativeTo(<span class = "keyword">null</span>); <span class = "comment">// Center the frame</span>
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+}
+</pre>
+</body>
+</html>

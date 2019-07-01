@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - DisplayTime.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.util.Scanner;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> DisplayTime {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    Scanner input = <span class = "keyword">new</span> Scanner(System.in);
+    <span class = "comment">// Prompt the user for input</span>
+    System.out.print(<span class = "literal">"Enter an integer for seconds: "</span>);
+    <span class = "keyword">int</span> seconds = input.nextInt();
+ 
+    <span class = "keyword">int</span> minutes = seconds / <span class = "literal">60</span>; <span class = "comment">// Find minutes in seconds</span>
+    <span class = "keyword">int</span> remainingSeconds = seconds % <span class = "literal">60</span>; <span class = "comment">// Seconds remaining</span>
+    System.out.println(seconds + <span class = "literal">" seconds is "</span> + minutes + 
+      <span class = "literal">" minutes and "</span> + remainingSeconds + <span class = "literal">" seconds"</span>);  
+  }
+}
+</pre>
+</body>
+</html>

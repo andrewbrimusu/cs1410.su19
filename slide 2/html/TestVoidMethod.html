@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - TestVoidMethod.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> TestVoidMethod {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    System.out.print(<span class = "literal">"The grade is "</span>);
+    printGrade(<span class = "literal">78</span>.<span class = "literal">5</span>);
+
+    System.out.print(<span class = "literal">"The grade is "</span>);
+    printGrade(<span class = "literal">59</span>.<span class = "literal">5</span>);
+  }
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> printGrade(<span class = "keyword">double</span> score) {
+    <span class = "keyword">if</span> (score &gt;= <span class = "literal">90</span>.<span class = "literal">0</span>) {
+      System.out.println(<span class = "literal">'A'</span>);
+    } 
+    <span class = "keyword">else</span> <span class = "keyword">if</span> (score &gt;= <span class = "literal">80</span>.<span class = "literal">0</span>) {
+      System.out.println(<span class = "literal">'B'</span>);
+    } 
+    <span class = "keyword">else</span> <span class = "keyword">if</span> (score &gt;= <span class = "literal">70</span>.<span class = "literal">0</span>) {
+      System.out.println(<span class = "literal">'C'</span>);
+    } 
+    <span class = "keyword">else</span> <span class = "keyword">if</span> (score &gt;= <span class = "literal">60</span>.<span class = "literal">0</span>) {
+      System.out.println(<span class = "literal">'D'</span>);
+    } 
+    <span class = "keyword">else</span> {
+      System.out.println(<span class = "literal">'F'</span>);
+    }
+  }
+}
+</pre>
+</body>
+</html>

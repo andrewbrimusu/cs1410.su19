@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - SierpinskiTriangle.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> javax.swing.*;
+<span class = "keyword">import</span> java.awt.*;
+<span class = "keyword">import</span> java.awt.event.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> SierpinskiTriangle <span class = "keyword">extends</span> JApplet {
+  <span class = "keyword">private</span> JTextField jtfOrder = <span class = "keyword">new</span> JTextField(<span class = "literal">"0"</span>, <span class = "literal">5</span>); <span class = "comment">// Order</span>
+  <span class = "keyword">private</span> SierpinskiTrianglePanel trianglePanel = 
+    <span class = "keyword">new</span> SierpinskiTrianglePanel(); <span class = "comment">// To display the pattern</span>
+  
+  <span class = "keyword">public</span> SierpinskiTriangle() {
+    <span class = "comment">// Panel to hold label, text field, and a button</span>
+    JPanel panel = <span class = "keyword">new</span> JPanel();
+    panel.add(<span class = "keyword">new</span> JLabel(<span class = "literal">"Enter an order: "</span>));
+    panel.add(jtfOrder);
+    jtfOrder.setHorizontalAlignment(SwingConstants.RIGHT);
+    
+    <span class = "comment">// Add a Sierpinski Triangle panel to the applet</span>
+    add(trianglePanel);
+    add(panel, BorderLayout.SOUTH);
+    
+    <span class = "comment">// Register a listener</span>
+    jtfOrder.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        trianglePanel.setOrder(Integer.parseInt(jtfOrder.getText()));
+      }
+    });
+  }
+  
+  <span class = "keyword">static</span> <span class = "keyword">class</span> SierpinskiTrianglePanel <span class = "keyword">extends</span> JPanel {
+    <span class = "keyword">private</span> <span class = "keyword">int</span> order = <span class = "literal">0</span>;
+    
+    <span class = "comment">/** Set a new order */</span>
+    <span class = "keyword">public</span> <span class = "keyword">void</span> setOrder(<span class = "keyword">int</span> order) {
+      <span class = "keyword">this</span>.order = order;
+      repaint();
+    }
+    
+    <span class = "keyword">protected</span> <span class = "keyword">void</span> paintComponent(Graphics g) {
+      <span class = "keyword">super</span>.paintComponent(g);
+      
+      <span class = "comment">// Select three points in proportion to the panel size</span>
+      Point p1 = <span class = "keyword">new</span> Point(getWidth() / <span class = "literal">2</span>, <span class = "literal">10</span>);
+      Point p2 = <span class = "keyword">new</span> Point(<span class = "literal">10</span>, getHeight() - <span class = "literal">10</span>);
+      Point p3 = <span class = "keyword">new</span> Point(getWidth() - <span class = "literal">10</span>, getHeight() - <span class = "literal">10</span>);
+      
+      displayTriangles(g, order, p1, p2, p3);
+    }
+    
+    <span class = "keyword">private</span> <span class = "keyword">static</span> <span class = "keyword">void</span> displayTriangles(Graphics g, <span class = "keyword">int</span> order,
+        Point p1, Point p2, Point p3) {
+      <span class = "keyword">if</span> (order &gt;= <span class = "literal">0</span>) {
+        <span class = "comment">// Draw a triangle to connect three points</span>
+        g.drawLine(p1.x, p1.y, p2.x, p2.y);
+        g.drawLine(p1.x, p1.y, p3.x, p3.y);
+        g.drawLine(p2.x, p2.y, p3.x, p3.y);
+        
+        <span class = "comment">// Get the midpoint on each edge in the triangle</span>
+        Point p12 = midpoint(p1, p2);
+        Point p23 = midpoint(p2, p3);
+        Point p31 = midpoint(p3, p1);
+
+        <span class = "comment">// Recursively display three triangles</span>
+        displayTriangles(g, order - <span class = "literal">1</span>, p1, p12, p31);
+        displayTriangles(g, order - <span class = "literal">1</span>, 
+          p12, p2, p23);
+        displayTriangles(g, order - <span class = "literal">1</span>, 
+          p31, p23, p3);
+      }
+    }
+    
+    <span class = "keyword">private</span> <span class = "keyword">static</span> Point midpoint(Point p1, Point p2) {
+      <span class = "keyword">return</span> <span class = "keyword">new</span> Point((p1.x + p2.x) / <span class = "literal">2</span>, (p1.y + p2.y) / <span class = "literal">2</span>);
+    }
+  }
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    JFrame frame = <span class = "keyword">new</span> JFrame(<span class = "literal">"SierpinskiTriangle"</span>);
+    SierpinskiTriangle applet = <span class = "keyword">new</span> SierpinskiTriangle();
+    frame.add(applet);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(<span class = "literal">400</span>, <span class = "literal">400</span>);
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+}
+</pre>
+</body>
+</html>

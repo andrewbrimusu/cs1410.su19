@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - CheckBoxDemo.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.awt.*;
+<span class = "keyword">import</span> java.awt.event.*;
+<span class = "keyword">import</span> javax.swing.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> CheckBoxDemo <span class = "keyword">extends</span> ButtonDemo {
+  <span class = "comment">// Create three check boxes to control the display of message</span>
+  <span class = "keyword">private</span> JCheckBox jchkCentered = <span class = "keyword">new</span> JCheckBox(<span class = "literal">"Centered"</span>);
+  <span class = "keyword">private</span> JCheckBox jchkBold = <span class = "keyword">new</span> JCheckBox(<span class = "literal">"Bold"</span>);
+  <span class = "keyword">private</span> JCheckBox jchkItalic = <span class = "keyword">new</span> JCheckBox(<span class = "literal">"Italic"</span>);
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    CheckBoxDemo frame = <span class = "keyword">new</span> CheckBoxDemo();
+    frame.setTitle(<span class = "literal">"CheckBoxDemo"</span>);
+    frame.setLocationRelativeTo(<span class = "keyword">null</span>); <span class = "comment">// Center the frame</span>
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(<span class = "literal">500</span>, <span class = "literal">200</span>);
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+
+  <span class = "keyword">public</span> CheckBoxDemo() {
+    <span class = "comment">// Set mnemonic keys</span>
+    jchkCentered.setMnemonic(<span class = "literal">'C'</span>);
+    jchkBold.setMnemonic(<span class = "literal">'B'</span>);
+    jchkItalic.setMnemonic(<span class = "literal">'I'</span>);
+
+    <span class = "comment">// Create a new panel to hold check boxes</span>
+    JPanel jpCheckBoxes = <span class = "keyword">new</span> JPanel();
+    jpCheckBoxes.setLayout(<span class = "keyword">new</span> GridLayout(<span class = "literal">3</span>, <span class = "literal">1</span>));
+    jpCheckBoxes.add(jchkCentered);
+    jpCheckBoxes.add(jchkBold);
+    jpCheckBoxes.add(jchkItalic);
+    add(jpCheckBoxes, BorderLayout.EAST);
+
+    <span class = "comment">// Register listeners with the check boxes</span>
+    jchkCentered.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+         messagePanel.setCentered(jchkCentered.isSelected());
+      }
+    });
+    jchkBold.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        setNewFont();
+      }
+    });
+    jchkItalic.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        setNewFont();
+      }
+    });
+  }
+
+  <span class = "keyword">private</span> <span class = "keyword">void</span> setNewFont() {
+    <span class = "comment">// Determine a font style</span>
+    <span class = "keyword">int</span> fontStyle = Font.PLAIN;
+    fontStyle += (jchkBold.isSelected() ? Font.BOLD : Font.PLAIN);
+    fontStyle += (jchkItalic.isSelected() ? Font.ITALIC : Font.PLAIN);
+
+    <span class = "comment">// Set font for the message</span>
+    Font font = messagePanel.getFont();
+    messagePanel.setFont(
+      <span class = "keyword">new</span> Font(font.getName(), fontStyle, font.getSize()));
+  }
+}
+</pre>
+</body>
+</html>

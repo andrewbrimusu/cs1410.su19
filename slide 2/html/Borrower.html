@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - Borrower.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> Borrower <span class = "keyword">extends</span> Person1 {
+  <span class = "keyword">private</span> Loan loan;
+
+  <span class = "comment">/** Construct a borrower with default properties */</span>
+  <span class = "keyword">public</span> Borrower() {
+    <span class = "keyword">super</span>();
+  }
+
+  <span class = "comment">/** Create a borrower with specified name and address */</span>
+  <span class = "keyword">public</span> Borrower(Name name, Address address) {
+    <span class = "keyword">super</span>(name, address);
+  }
+
+  <span class = "comment">/** Return loan */</span>
+  <span class = "keyword">public</span> Loan getLoan() {
+    <span class = "keyword">return</span> loan;
+  }
+
+  <span class = "comment">/** Set a new loan */</span>
+  <span class = "keyword">public</span> <span class = "keyword">void</span> setLoan(Loan loan) {
+    <span class = "keyword">this</span>.loan = loan;
+  }
+
+  <span class = "comment">/** String representation for borrower */</span>
+  <span class = "keyword">public</span> String toString() {
+    <span class = "keyword">return</span> <span class = "keyword">super</span>.toString() +
+      <span class = "literal">"Monthly payment is "</span> + loan.getMonthlyPayment() + <span class = "literal">'\n'</span> +
+      <span class = "literal">"Total payment is "</span> + loan.getTotalPayment();
+  }
+}
+</pre>
+</body>
+</html>

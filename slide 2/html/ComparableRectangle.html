@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - ComparableRectangle.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> ComparableRectangle <span class = "keyword">extends</span> Rectangle
+    <span class = "keyword">implements</span> Comparable {
+  <span class = "comment">/** Construct a ComparableRectangle with specified properties */</span>
+  <span class = "keyword">public</span> ComparableRectangle(<span class = "keyword">double</span> width, <span class = "keyword">double</span> height) {
+    <span class = "keyword">super</span>(width, height);
+  }
+
+  <span class = "comment">/** Implement the compareTo method defined in Comparable */</span>
+  <span class = "keyword">public</span> <span class = "keyword">int</span> compareTo(Object o) {
+    <span class = "keyword">if</span> (getArea() &gt; ((ComparableRectangle)o).getArea())
+      <span class = "keyword">return</span> <span class = "literal">1</span>;
+    <span class = "keyword">else</span> <span class = "keyword">if</span> (getArea() &lt; ((ComparableRectangle)o).getArea())
+      <span class = "keyword">return</span> -<span class = "literal">1</span>;
+    <span class = "keyword">else</span>
+      <span class = "keyword">return</span> <span class = "literal">0</span>;
+  }
+}
+</pre>
+</body>
+</html>

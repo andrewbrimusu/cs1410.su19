@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - PopupMenuDemo.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> javax.swing.*;
+<span class = "keyword">import</span> java.awt.*;
+<span class = "keyword">import</span> java.awt.event.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> PopupMenuDemo <span class = "keyword">extends</span> JApplet {
+  <span class = "keyword">private</span> JPopupMenu jPopupMenu1 = <span class = "keyword">new</span> JPopupMenu();
+  <span class = "keyword">private</span> JMenuItem jmiNew = <span class = "keyword">new</span> JMenuItem(<span class = "literal">"New"</span>,
+    <span class = "keyword">new</span> ImageIcon(getClass().getResource(<span class = "literal">"image/new.gif"</span>)));
+  <span class = "keyword">private</span> JMenuItem jmiOpen = <span class = "keyword">new</span> JMenuItem(<span class = "literal">"Open"</span>,
+    <span class = "keyword">new</span> ImageIcon(getClass().getResource(<span class = "literal">"image/open.gif"</span>)));
+  <span class = "keyword">private</span> JMenuItem jmiPrint = <span class = "keyword">new</span> JMenuItem(<span class = "literal">"Print"</span>,
+    <span class = "keyword">new</span> ImageIcon(getClass().getResource(<span class = "literal">"image/print.gif"</span>)));
+  <span class = "keyword">private</span> JMenuItem jmiExit = <span class = "keyword">new</span> JMenuItem(<span class = "literal">"Exit"</span>);
+  <span class = "keyword">private</span> JTextArea jTextArea1 = <span class = "keyword">new</span> JTextArea();
+
+  <span class = "keyword">public</span> PopupMenuDemo() {
+    jPopupMenu1.add(jmiNew);
+    jPopupMenu1.add(jmiOpen);
+    jPopupMenu1.addSeparator();
+    jPopupMenu1.add(jmiPrint);
+    jPopupMenu1.addSeparator();
+    jPopupMenu1.add(jmiExit);
+    jPopupMenu1.add(jmiExit);
+    
+    add(<span class = "keyword">new</span> JScrollPane(jTextArea1), BorderLayout.CENTER);
+    jTextArea1.setComponentPopupMenu(jPopupMenu1);
+   
+    jmiNew.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        System.out.println(<span class = "literal">"Process New"</span>);
+      }
+    });
+    jmiOpen.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        System.out.println(<span class = "literal">"Process Open"</span>);
+      }
+    });
+    jmiPrint.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        System.out.println(<span class = "literal">"Process Print"</span>);
+      }
+    });
+    jmiExit.addActionListener(<span class = "keyword">new</span> ActionListener() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> actionPerformed(ActionEvent e) {
+        System.exit(<span class = "literal">0</span>);
+      }
+    });
+  }
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    PopupMenuDemo applet = <span class = "keyword">new</span> PopupMenuDemo();
+    JFrame frame = <span class = "keyword">new</span> JFrame();
+    //EXIT_ON_CLOSE == <span class = "literal">3</span>
+    frame.setDefaultCloseOperation(<span class = "literal">3</span>);
+    frame.setTitle(<span class = "literal">"PopupMenuDemo"</span>);
+    frame.getContentPane().add(applet, BorderLayout.CENTER);
+    applet.init();
+    applet.start();
+    frame.setSize(<span class = "literal">400</span>,<span class = "literal">320</span>);
+    frame.setLocationRelativeTo(<span class = "keyword">null</span>);
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+}
+</pre>
+</body>
+</html>

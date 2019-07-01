@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - Test1.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> java.io.*;
+<span class = "keyword">import</span> java.util.Arrays;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> Test1 {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+  	<span class = "keyword">int</span>[] list1 = {<span class = "literal">2</span>, <span class = "literal">1</span>, <span class = "literal">2</span>, -<span class = "literal">5</span>, <span class = "literal">4</span>, <span class = "literal">2</span>, <span class = "literal">1</span>};
+  	
+  	//Arrays.sort(list1);
+  	
+  	<span class = "keyword">for</span> (<span class = "keyword">int</span> i = <span class = "literal">0</span>; i &lt; list1.length; i++)
+  		System.out.print(list1[i] + <span class = "literal">" "</span>);
+  	
+  	<span class = "keyword">int</span>[] list2 = {<span class = "literal">2</span>, <span class = "literal">1</span>, <span class = "literal">2</span>, -<span class = "literal">5</span>, <span class = "literal">4</span>, <span class = "literal">2</span>, <span class = "literal">1</span>};
+  	
+		System.out.print(Arrays.equals(list1, list2));
+		
+  } 
+}
+</pre>
+</body>
+</html>

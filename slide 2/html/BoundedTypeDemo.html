@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - BoundedTypeDemo.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> BoundedTypeDemo {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args ) {
+    Rectangle rectangle = <span class = "keyword">new</span> Rectangle(<span class = "literal">2</span>, <span class = "literal">2</span>);
+    Circle circle = <span class = "keyword">new</span> Circle(<span class = "literal">2</span>);
+
+    System.out.println(<span class = "literal">"Same area? "</span> +
+      BoundedTypeDemo.&lt;GeometricObject&gt;equalArea(rectangle, circle));
+  }
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> &lt;E <span class = "keyword">extends</span> GeometricObject&gt; <span class = "keyword">boolean</span> equalArea(
+      E object1, E object2) {
+    <span class = "keyword">return</span> object1.getArea() == object2.getArea();
+  }
+}
+</pre>
+</body>
+</html>

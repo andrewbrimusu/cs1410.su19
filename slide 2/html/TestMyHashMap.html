@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - TestMyHashMap.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> TestMyHashMap {
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    <span class = "comment">// Create a map</span>
+    MyMap&lt;String, Integer&gt; map = <span class = "keyword">new</span> MyHashMap&lt;String, Integer&gt;();
+    map.put(<span class = "literal">"Smith"</span>, <span class = "literal">30</span>);
+    map.put(<span class = "literal">"Anderson"</span>, <span class = "literal">31</span>);
+    map.put(<span class = "literal">"Lewis"</span>, <span class = "literal">29</span>);
+    map.put(<span class = "literal">"Cook"</span>, <span class = "literal">29</span>);
+
+    System.out.println(<span class = "literal">"Entries in map: "</span> + map);
+
+    System.out.println(<span class = "literal">"The age for "</span> + <span class = "literal">"Lewis is "</span> +
+      map.get(<span class = "literal">"Lewis"</span>).intValue());
+
+    System.out.println(<span class = "literal">"Is Smith in the map? "</span> + 
+      map.containsKey(<span class = "literal">"Smith"</span>));
+    System.out.println(<span class = "literal">"Is age <span class = "literal">33</span> in the map? "</span> + 
+        map.containsValue(<span class = "literal">33</span>));
+
+    map.remove(<span class = "literal">"Smith"</span>);
+    System.out.println(<span class = "literal">"Entries in map: "</span> + map);
+
+    map.clear();
+    System.out.println(<span class = "literal">"Entries in map: "</span> + map);
+  }
+}
+</pre>
+</body>
+</html>

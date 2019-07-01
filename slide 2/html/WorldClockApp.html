@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - WorldClockApp.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">import</span> javax.swing.*;
+
+<span class = "keyword">public</span> <span class = "keyword">class</span> WorldClockApp <span class = "keyword">extends</span> JApplet {
+  <span class = "comment">/** Construct the applet */</span>
+  <span class = "keyword">public</span> WorldClockApp() {
+    add(<span class = "keyword">new</span> WorldClockControl());
+  }
+
+  <span class = "keyword">public</span> <span class = "keyword">static</span> <span class = "keyword">void</span> main(String[] args) {
+    WorldClockApp applet = <span class = "keyword">new</span> WorldClockApp();
+    JFrame frame = <span class = "keyword">new</span> JFrame(<span class = "literal">"WorldClockApp"</span>);
+    frame.setLocationRelativeTo(<span class = "keyword">null</span>);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.getContentPane().add(applet, java.awt.BorderLayout.CENTER);
+    frame.setSize(<span class = "literal">400</span>, <span class = "literal">320</span>);
+    frame.setVisible(<span class = "keyword">true</span>);
+  }
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Intro to Java Programming, 8E - ViewController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type = "text/css">
+body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
+.keyword {color: #000080; font-weight: bold}
+.comment {color: #008000}
+.literal {color: #0000ff}
+</style>
+</head>
+<body>
+<pre>
+<span class = "keyword">public</span> <span class = "keyword">class</span> ViewController <span class = "keyword">extends</span> CircleView {
+  <span class = "keyword">public</span> ViewController() {
+    <span class = "comment">// Register mouse listener</span>
+    addMouseListener(<span class = "keyword">new</span> java.awt.event.MouseAdapter() {
+      <span class = "keyword">public</span> <span class = "keyword">void</span> mousePressed(java.awt.event.MouseEvent e) {
+        CircleModel model = getModel(); <span class = "comment">// Get model</span>
+
+        <span class = "keyword">if</span> (model == <span class = "keyword">null</span>) <span class = "keyword">return</span>;
+
+        <span class = "keyword">if</span> (e.isMetaDown())
+          model.setRadius(model.getRadius() - <span class = "literal">5</span>); <span class = "comment">// Right button</span>
+        <span class = "keyword">else</span>
+          model.setRadius(model.getRadius() + <span class = "literal">5</span>); <span class = "comment">// Left button</span>
+      }
+    });
+  }
+}
+</pre>
+</body>
+</html>
