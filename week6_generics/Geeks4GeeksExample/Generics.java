@@ -2,6 +2,8 @@
 // Generic classes 
    
 // We use < > to specify Parameter type 
+// Bounded Generic <T extends Object>
+// Bounded Generic <T extends Number> doesnt work because we use String below
 class GenericTest<T> 
 { 
     // An object of type T is declared 

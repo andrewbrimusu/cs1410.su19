@@ -66,6 +66,14 @@ public class LinkedList {
             currNode = currNode.next; 
         } 
     } 
+    
+    public static void printRecur(Node n) {
+        if(n == null) return; // base case
+        System.out.println(n.data + " "); // logic
+        printRecur(n.next); // return
+    }
+    
+    
    
     // Driver code 
     public static void main(String[] args) 
@@ -89,5 +97,7 @@ public class LinkedList {
   
         // Print the LinkedList 
         printList(list); 
+        
+        printRecur(list.head);  
     } 
 } 
